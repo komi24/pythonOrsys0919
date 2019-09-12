@@ -21,8 +21,9 @@ class Pompier:
                 self.position[1] -= 1
             else:
                 self.est_disponible = 5
+                self.terrain.eteindre(feu)
         else:
             self.est_disponible -= 1
-            if self.est_disponible == 0:
-                self.terrain.eteindre(feu)
+#            if self.est_disponible == 0:
+#                self.terrain.eteindre(feu)
             
