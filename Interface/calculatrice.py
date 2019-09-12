@@ -1,47 +1,38 @@
 # -*- coding: utf-8 -*-
-
 from tkinter import *
 from itertools import product
 
 
 class OpButton(Button):
     def __init__(self, *args, **kwargs):
-#        kwargs['command'] = self.print_op
         Button.__init__(self, *args, **kwargs)
         self.operator = kwargs['text']
     
-    def print_op(self):
-        print('op', self.operator)
 
 class NumberButton(Button):
     def __init__(self, *args, **kwargs):
-#        kwargs['command'] = self.print_number
         Button.__init__(self, *args, **kwargs)
         self.value = kwargs['text']
     
     def print_number(self):
         print('number', self.value)
 
-#def valider():
-#    print("Validation")
-#
-#def valider_bind(e):
-#    print("Validation", e.widget)
-#
-#def print_op(e):
-#    print("Op", e.widget.operator)
 
 class Calculatrice:
     def __init__(self):
         self.fen = Tk()
         
+        self.operand_1 = 0
+        self.operand_2 = 0
+        self.operator= '+'
+        
         self.value = StringVar()
-        self.value.set("0")
+        self.value.set("")
         self.label = Label(self.fen, textvariable=self.value, height=2)
         self.label.pack(side=TOP, expand=True, fill='both')    
     
         self.button_valider = Button(self.fen, text="Valider", height=2) #, command=valider)
-        #button_valider.bind('<Button-1>', valider_bind)
+        self.button_valider.bind('<Button-1>', self.handle_validate)
         self.button_valider.pack(
                 side=BOTTOM,
                 expand=True,
@@ -74,9 +65,33 @@ class Calculatrice:
         self.fen.mainloop()
     
     def handle_number(self, e):
-        self.value.set(e.widget.value)
+        curr_operand = self.value.get() + e.widget.value
+        self.value.set(curr_operand)
+        self.operand_2 = int(curr_operand)
     
     def handle_op(self, e):
-        self.value.set(e.widget.operator)
+        if self.operator == '+':
+            self.operand_1 += self.operand_2
+        if self.operator == '-':
+            self.operand_1 -= self.operand_2
+        if self.operator == '*':
+            self.operand_1 *= self.operand_2
+        if self.operator == '/':
+            self.operand_1 /= self.operand_2
+        self.operand_2 = 0
+        self.value.set('')
+        self.operator = e.widget.operator
+        
+    def handle_validate(self, e):
+        if self.operator == '+':
+            self.operand_1 += self.operand_2
+        if self.operator == '-':
+            self.operand_1 -= self.operand_2
+        if self.operator == '*':
+            self.operand_1 *= self.operand_2
+        if self.operator == '/':
+            self.operand_1 /= self.operand_2
+        self.operand_2 = 0
+        self.value.set(str(self.operand_1))
     
 calc = Calculatrice()
