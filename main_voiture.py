@@ -18,8 +18,8 @@ from time import sleep
 import os
 
 mon_terrain = Terrain()
-
-for i in range(10):
-    os.system('clear')
-    mon_terrain.play()
-    sleep(1)
+print(mon_terrain)
+#for i in range(10):
+#    os.system('clear')
+#    mon_terrain.play()
+#    sleep(1)

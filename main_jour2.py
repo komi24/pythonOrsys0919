@@ -28,15 +28,18 @@
 #print(une_voiture.position)
 
 from ExoBank.Personne import Personne
-from ExoBank.Compte import Compte
+from ExoBank.Compte import Compte, CompteCourant
 
 une_personne = Personne('Jung', 'Justine', 32)
 autre_personne = Personne('Dupont', 'Charles', 28)
 
 une_personne.dire_bonjour(autre_personne)
 
-un_compte = Compte(10000)
+un_compte = CompteCourant(10000)
+print(un_compte.solde)
+autre_compte = CompteCourant(1000)
 un_compte.depot(100)
 un_compte.retrait(100)
 
+print(un_compte > autre_compte)
 

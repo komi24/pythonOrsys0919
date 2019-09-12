@@ -31,3 +31,6 @@ class Voiture:
         
     def tourner(self):
         self.direction = np.array([[0,-1],[1,0]]).dot(self.direction)
+        
+    def __repr__(self):
+        return "Voiture : %d - %d"%(self.position[0],self.position[1])

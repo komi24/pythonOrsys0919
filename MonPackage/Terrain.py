@@ -27,4 +27,6 @@ class Terrain:
             if voiture.position[0] == i and voiture.position[1] == j:
                 return True
         return False
+    def __repr__(self):
+        return "Je suis un joli terrain avec " + str(self.liste_voitures)
     
